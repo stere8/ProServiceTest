@@ -1,0 +1,30 @@
+<!-- task-assignment.component.html -->
+<div class="task-assignment-container">
+  <!-- User Selection Section -->
+  <app-user-list
+    [users]="users"
+    [selectedUser]="selectedUser"
+    (userSelected)="onUserSelected($event)"
+  >
+  </app-user-list>
+
+  <!-- Tasks Section -->
+  <div class="tasks-section" *ngIf="selectedUser">
+    <!-- Available Tasks -->
+    <app-available-tasks
+      [tasks]="availableTasks"
+      [selectedUserId]="selectedUser?.id"
+      [hasUnsavedChanges]="hasUnsavedChanges"
+      (taskSelectionChange)="onTaskSelectionChange($event)"
+      (assignTasks)="onAssignTasks($event)"
+      (pageChange)="onPageChange($event)"
+    ></app-available-tasks>
+
+    <app-assigned-tasks [tasks]="assignedTasks"> </app-assigned-tasks>
+  </div>
+
+  <!-- No User Selected Message -->
+  <div class="no-user-message" *ngIf="!selectedUser">
+    Please select a user to view and assign tasks.
+  </div>
+</div>

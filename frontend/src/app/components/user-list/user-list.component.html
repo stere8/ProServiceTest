@@ -1,0 +1,14 @@
+<div class="users-list">
+  <h3>Select a User</h3>
+  <ul>
+    <li
+      *ngFor="let u of users"
+      (click)="onUserSelected(u)"
+      [class.selected]="u.id === selectedUser?.id"
+      class="user-item"
+    >
+      <span class="user-name">{{ u.nameAndSurname }}</span>
+      <span class="user-type-chip">{{ getUserTypeString(u.userType) }}</span>
+    </li>
+  </ul>
+</div>

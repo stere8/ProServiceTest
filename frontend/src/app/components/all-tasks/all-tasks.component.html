@@ -1,0 +1,60 @@
+<!-- all-tasks.component.html -->
+<div class="all-tasks-container">
+  <h2>All Tasks</h2>
+
+  <div class="controls">
+    <div class="page-size-control">
+      <label for="pageSize">Items per page:</label>
+      <select id="pageSize" (change)="onPageSizeChange($event)">
+        <option
+          *ngFor="let size of pageSizeOptions"
+          [value]="size"
+          [selected]="size === pageSize"
+        >
+          {{ size }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <table class="tasks-table">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Deadline</th>
+        <th>Assigned To</th>
+        <th>Status</th>
+        <th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.shortDescription }}</td>
+        <td>{{ task.taskType }}</td>
+        <td>{{ formatDeadline(task.deadline) }}</td>
+        <td>{{ getAssignedUserName(task.assignedUserId) }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.difficulty }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-controls">
+    <button
+      (click)="onPageChange(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+    <span>
+      Page {{ currentPage }} of {{ totalPages }} (Total items: {{ totalCount }})
+    </span>
+    <button
+      (click)="onPageChange(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
+  </div>
+</div>

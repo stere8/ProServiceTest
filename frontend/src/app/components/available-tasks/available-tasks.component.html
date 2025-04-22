@@ -1,0 +1,27 @@
+<div class="available-tasks">
+  <h3>Available Tasks</h3>
+  <ul class="available-tasks-list">
+    <li
+      *ngFor="let t of tasks"
+      (click)="toggleTaskId(t.id)"
+      [class.selected]="selectedTaskIds.includes(t.id)"
+      class="task-item"
+    >
+      {{ t.shortDescription }} (Difficulty: {{ t.difficulty }})
+    </li>
+  </ul>
+
+  <div class="pagination-controls">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <span>Page {{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="tasks.length < pageSize">
+      Next
+    </button>
+  </div>
+
+  <button (click)="assignSelected()" [disabled]="selectedTaskIds.length === 0">
+    Assign Selected Tasks
+  </button>
+</div>
