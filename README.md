@@ -1,5 +1,5 @@
 # ProServiceTest
- Projekt testowy w ramach proaca w PS
+ Projekt testowy w ramach praca w PS
  
 ## Podsumowanie decyzji architektonicznych i programistycznych
 
